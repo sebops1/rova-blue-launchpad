@@ -26,6 +26,9 @@ import { useAuth } from "@/hooks/useAuth";
 import { APP_ROLES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
+// Modules currently built. Remaining modules (experiences, pipeline, partners,
+// tasks, documents, reports, investor view, settings) are added here as their
+// route files land.
 const NAV = [
   { to: "/dashboard", label: "Executive Dashboard", icon: Gauge },
   { to: "/sites", label: "Site Evaluation", icon: MapPinned },
@@ -33,14 +36,6 @@ const NAV = [
   { to: "/compliance", label: "Compliance & Safety", icon: ShieldCheck },
   { to: "/procurement", label: "Procurement", icon: Package },
   { to: "/finance", label: "Financial Model", icon: BarChart3 },
-  { to: "/experiences", label: "Experiences & Pricing", icon: Sparkles },
-  { to: "/pipeline", label: "Pre-Sales Pipeline", icon: Users },
-  { to: "/partners", label: "Partners", icon: Building2 },
-  { to: "/tasks", label: "30-Day Launch Board", icon: CalendarCheck },
-  { to: "/documents", label: "Document Center", icon: FileText },
-  { to: "/reports", label: "Reports", icon: PresentationIcon },
-  { to: "/investor", label: "Investor View", icon: Sparkles },
-  { to: "/settings", label: "Settings", icon: Settings },
 ] as const;
 
 function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
