@@ -5,7 +5,9 @@ import { supabase } from "@/integrations/supabase/client";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-export type Row = Record<string, any>;
+// Intentionally loose: rows are dynamic across many tables and are rendered
+// through generic table/form components rather than per-table typed models.
+export type Row = any;
 
 type OrderSpec = { column: string; ascending?: boolean };
 
