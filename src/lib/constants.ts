@@ -155,26 +155,31 @@ export const LAUNCH_TIMELINE = [
     week: 1,
     title: "Week 1 — Site Validation",
     detail: "Visit, score and photograph all six candidate beaches; record traffic and conditions.",
+    categories: ["Site Validation"],
   },
   {
     week: 2,
     title: "Week 2 — Negotiation",
     detail: "Identify decision makers, present the 90-day pilot, agree commercial terms.",
+    categories: ["Negotiation"],
   },
   {
     week: 3,
     title: "Week 2-3 — Procurement & Compliance",
     detail: "Collect supplier quotes and landed costs; verify permissions, insurance and safety SOPs.",
+    categories: ["Procurement", "Compliance"],
   },
   {
     week: 4,
     title: "Week 3 — Pre-Sales",
     detail: "Open the waitlist, activate hotel partners, secure deposits for launch weekend.",
+    categories: ["Pre-Sales", "Partnerships"],
   },
   {
     week: 5,
     title: "Week 4 — Go / No-Go",
     detail: "Readiness review against safety, permission, equipment and pre-sales criteria.",
+    categories: ["Launch", "Operations", "General"],
   },
 ] as const;
 
