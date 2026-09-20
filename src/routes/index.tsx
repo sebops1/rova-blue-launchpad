@@ -168,7 +168,8 @@ function WaitlistForm() {
   };
 
   return (
-    <GlassCard className="p-6" id="waitlist">
+    <div id="waitlist" className="scroll-mt-24">
+    <GlassCard className="p-6">
       <h2 className="font-display text-2xl font-semibold">Join the waitlist</h2>
       <p className="mt-1 text-sm text-muted-foreground">
         Waitlist members hear first about launch dates and founding-guest pricing.
@@ -206,6 +207,7 @@ function WaitlistForm() {
         </Button>
       </form>
     </GlassCard>
+    </div>
   );
 }
 
@@ -239,7 +241,8 @@ function PartnerForm() {
   };
 
   return (
-    <GlassCard className="p-6" id="partner">
+    <div id="partner" className="scroll-mt-24">
+    <GlassCard className="p-6">
       <h2 className="font-display text-2xl font-semibold">Partner with us</h2>
       <p className="mt-1 text-sm text-muted-foreground">
         Hotels, hosts, tour operators, planners and creators — let&apos;s build the experience together.
@@ -287,5 +290,6 @@ function PartnerForm() {
         </Button>
       </form>
     </GlassCard>
+    </div>
   );
 }
