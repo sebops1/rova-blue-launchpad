@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedComplianceRouteImport } from './routes/_authenticated/compliance'
 import { Route as AuthenticatedCrmRouteImport } from './routes/_authenticated/crm'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedFinanceRouteImport } from './routes/_authenticated/finance'
 import { Route as AuthenticatedProcurementRouteImport } from './routes/_authenticated/procurement'
 import { Route as AuthenticatedSitesRouteImport } from './routes/_authenticated/sites'
 
@@ -47,6 +48,11 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedFinanceRoute = AuthenticatedFinanceRouteImport.update({
+  id: '/finance',
+  path: '/finance',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedProcurementRoute =
   AuthenticatedProcurementRouteImport.update({
     id: '/procurement',
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/compliance': typeof AuthenticatedComplianceRoute
   '/crm': typeof AuthenticatedCrmRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/finance': typeof AuthenticatedFinanceRoute
   '/procurement': typeof AuthenticatedProcurementRoute
   '/sites': typeof AuthenticatedSitesRoute
 }
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/compliance': typeof AuthenticatedComplianceRoute
   '/crm': typeof AuthenticatedCrmRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/finance': typeof AuthenticatedFinanceRoute
   '/procurement': typeof AuthenticatedProcurementRoute
   '/sites': typeof AuthenticatedSitesRoute
 }
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/_authenticated/compliance': typeof AuthenticatedComplianceRoute
   '/_authenticated/crm': typeof AuthenticatedCrmRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/finance': typeof AuthenticatedFinanceRoute
   '/_authenticated/procurement': typeof AuthenticatedProcurementRoute
   '/_authenticated/sites': typeof AuthenticatedSitesRoute
 }
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/compliance'
     | '/crm'
     | '/dashboard'
+    | '/finance'
     | '/procurement'
     | '/sites'
   fileRoutesByTo: FileRoutesByTo
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
     | '/compliance'
     | '/crm'
     | '/dashboard'
+    | '/finance'
     | '/procurement'
     | '/sites'
   id:
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '/_authenticated/compliance'
     | '/_authenticated/crm'
     | '/_authenticated/dashboard'
+    | '/_authenticated/finance'
     | '/_authenticated/procurement'
     | '/_authenticated/sites'
   fileRoutesById: FileRoutesById
@@ -169,6 +181,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/finance': {
+      id: '/_authenticated/finance'
+      path: '/finance'
+      fullPath: '/finance'
+      preLoaderRoute: typeof AuthenticatedFinanceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/procurement': {
       id: '/_authenticated/procurement'
       path: '/procurement'
@@ -190,6 +209,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedComplianceRoute: typeof AuthenticatedComplianceRoute
   AuthenticatedCrmRoute: typeof AuthenticatedCrmRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedFinanceRoute: typeof AuthenticatedFinanceRoute
   AuthenticatedProcurementRoute: typeof AuthenticatedProcurementRoute
   AuthenticatedSitesRoute: typeof AuthenticatedSitesRoute
 }
@@ -198,6 +218,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedComplianceRoute: AuthenticatedComplianceRoute,
   AuthenticatedCrmRoute: AuthenticatedCrmRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedFinanceRoute: AuthenticatedFinanceRoute,
   AuthenticatedProcurementRoute: AuthenticatedProcurementRoute,
   AuthenticatedSitesRoute: AuthenticatedSitesRoute,
 }
