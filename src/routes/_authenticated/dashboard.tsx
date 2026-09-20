@@ -210,7 +210,9 @@ function DashboardPage() {
         </div>
         <div className="mt-6 grid gap-4 md:grid-cols-5">
           {LAUNCH_TIMELINE.map((phase) => {
-            const phaseTasks = taskRows.filter((t) => Number(t.week) === phase.week);
+            const phaseTasks = taskRows.filter((t) =>
+              (phase.categories as readonly string[]).includes(t.category),
+            );
             const phaseDone = phaseTasks.filter((t) => t.status === "Done").length;
             const progress = phaseTasks.length ? (phaseDone / phaseTasks.length) * 100 : 0;
             return (
