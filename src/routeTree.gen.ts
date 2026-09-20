@@ -15,11 +15,14 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedComplianceRouteImport } from './routes/_authenticated/compliance'
 import { Route as AuthenticatedCrmRouteImport } from './routes/_authenticated/crm'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedDocumentsRouteImport } from './routes/_authenticated/documents'
 import { Route as AuthenticatedExperiencesRouteImport } from './routes/_authenticated/experiences'
 import { Route as AuthenticatedFinanceRouteImport } from './routes/_authenticated/finance'
+import { Route as AuthenticatedInvestorRouteImport } from './routes/_authenticated/investor'
 import { Route as AuthenticatedPartnersRouteImport } from './routes/_authenticated/partners'
 import { Route as AuthenticatedPipelineRouteImport } from './routes/_authenticated/pipeline'
 import { Route as AuthenticatedProcurementRouteImport } from './routes/_authenticated/procurement'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedSitesRouteImport } from './routes/_authenticated/sites'
 import { Route as AuthenticatedTasksRouteImport } from './routes/_authenticated/tasks'
 
@@ -52,6 +55,11 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedDocumentsRoute = AuthenticatedDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedExperiencesRoute =
   AuthenticatedExperiencesRouteImport.update({
     id: '/experiences',
@@ -61,6 +69,11 @@ const AuthenticatedExperiencesRoute =
 const AuthenticatedFinanceRoute = AuthenticatedFinanceRouteImport.update({
   id: '/finance',
   path: '/finance',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedInvestorRoute = AuthenticatedInvestorRouteImport.update({
+  id: '/investor',
+  path: '/investor',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedPartnersRoute = AuthenticatedPartnersRouteImport.update({
@@ -79,6 +92,11 @@ const AuthenticatedProcurementRoute =
     path: '/procurement',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedSitesRoute = AuthenticatedSitesRouteImport.update({
   id: '/sites',
   path: '/sites',
@@ -96,11 +114,14 @@ export interface FileRoutesByFullPath {
   '/compliance': typeof AuthenticatedComplianceRoute
   '/crm': typeof AuthenticatedCrmRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/documents': typeof AuthenticatedDocumentsRoute
   '/experiences': typeof AuthenticatedExperiencesRoute
   '/finance': typeof AuthenticatedFinanceRoute
+  '/investor': typeof AuthenticatedInvestorRoute
   '/partners': typeof AuthenticatedPartnersRoute
   '/pipeline': typeof AuthenticatedPipelineRoute
   '/procurement': typeof AuthenticatedProcurementRoute
+  '/settings': typeof AuthenticatedSettingsRoute
   '/sites': typeof AuthenticatedSitesRoute
   '/tasks': typeof AuthenticatedTasksRoute
 }
@@ -110,11 +131,14 @@ export interface FileRoutesByTo {
   '/compliance': typeof AuthenticatedComplianceRoute
   '/crm': typeof AuthenticatedCrmRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/documents': typeof AuthenticatedDocumentsRoute
   '/experiences': typeof AuthenticatedExperiencesRoute
   '/finance': typeof AuthenticatedFinanceRoute
+  '/investor': typeof AuthenticatedInvestorRoute
   '/partners': typeof AuthenticatedPartnersRoute
   '/pipeline': typeof AuthenticatedPipelineRoute
   '/procurement': typeof AuthenticatedProcurementRoute
+  '/settings': typeof AuthenticatedSettingsRoute
   '/sites': typeof AuthenticatedSitesRoute
   '/tasks': typeof AuthenticatedTasksRoute
 }
@@ -126,11 +150,14 @@ export interface FileRoutesById {
   '/_authenticated/compliance': typeof AuthenticatedComplianceRoute
   '/_authenticated/crm': typeof AuthenticatedCrmRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/documents': typeof AuthenticatedDocumentsRoute
   '/_authenticated/experiences': typeof AuthenticatedExperiencesRoute
   '/_authenticated/finance': typeof AuthenticatedFinanceRoute
+  '/_authenticated/investor': typeof AuthenticatedInvestorRoute
   '/_authenticated/partners': typeof AuthenticatedPartnersRoute
   '/_authenticated/pipeline': typeof AuthenticatedPipelineRoute
   '/_authenticated/procurement': typeof AuthenticatedProcurementRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/sites': typeof AuthenticatedSitesRoute
   '/_authenticated/tasks': typeof AuthenticatedTasksRoute
 }
@@ -142,11 +169,14 @@ export interface FileRouteTypes {
     | '/compliance'
     | '/crm'
     | '/dashboard'
+    | '/documents'
     | '/experiences'
     | '/finance'
+    | '/investor'
     | '/partners'
     | '/pipeline'
     | '/procurement'
+    | '/settings'
     | '/sites'
     | '/tasks'
   fileRoutesByTo: FileRoutesByTo
@@ -156,11 +186,14 @@ export interface FileRouteTypes {
     | '/compliance'
     | '/crm'
     | '/dashboard'
+    | '/documents'
     | '/experiences'
     | '/finance'
+    | '/investor'
     | '/partners'
     | '/pipeline'
     | '/procurement'
+    | '/settings'
     | '/sites'
     | '/tasks'
   id:
@@ -171,11 +204,14 @@ export interface FileRouteTypes {
     | '/_authenticated/compliance'
     | '/_authenticated/crm'
     | '/_authenticated/dashboard'
+    | '/_authenticated/documents'
     | '/_authenticated/experiences'
     | '/_authenticated/finance'
+    | '/_authenticated/investor'
     | '/_authenticated/partners'
     | '/_authenticated/pipeline'
     | '/_authenticated/procurement'
+    | '/_authenticated/settings'
     | '/_authenticated/sites'
     | '/_authenticated/tasks'
   fileRoutesById: FileRoutesById
@@ -230,6 +266,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/documents': {
+      id: '/_authenticated/documents'
+      path: '/documents'
+      fullPath: '/documents'
+      preLoaderRoute: typeof AuthenticatedDocumentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/experiences': {
       id: '/_authenticated/experiences'
       path: '/experiences'
@@ -242,6 +285,13 @@ declare module '@tanstack/react-router' {
       path: '/finance'
       fullPath: '/finance'
       preLoaderRoute: typeof AuthenticatedFinanceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/investor': {
+      id: '/_authenticated/investor'
+      path: '/investor'
+      fullPath: '/investor'
+      preLoaderRoute: typeof AuthenticatedInvestorRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/partners': {
@@ -265,6 +315,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProcurementRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/sites': {
       id: '/_authenticated/sites'
       path: '/sites'
@@ -286,11 +343,14 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedComplianceRoute: typeof AuthenticatedComplianceRoute
   AuthenticatedCrmRoute: typeof AuthenticatedCrmRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedDocumentsRoute: typeof AuthenticatedDocumentsRoute
   AuthenticatedExperiencesRoute: typeof AuthenticatedExperiencesRoute
   AuthenticatedFinanceRoute: typeof AuthenticatedFinanceRoute
+  AuthenticatedInvestorRoute: typeof AuthenticatedInvestorRoute
   AuthenticatedPartnersRoute: typeof AuthenticatedPartnersRoute
   AuthenticatedPipelineRoute: typeof AuthenticatedPipelineRoute
   AuthenticatedProcurementRoute: typeof AuthenticatedProcurementRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
   AuthenticatedSitesRoute: typeof AuthenticatedSitesRoute
   AuthenticatedTasksRoute: typeof AuthenticatedTasksRoute
 }
@@ -299,11 +359,14 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedComplianceRoute: AuthenticatedComplianceRoute,
   AuthenticatedCrmRoute: AuthenticatedCrmRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedDocumentsRoute: AuthenticatedDocumentsRoute,
   AuthenticatedExperiencesRoute: AuthenticatedExperiencesRoute,
   AuthenticatedFinanceRoute: AuthenticatedFinanceRoute,
+  AuthenticatedInvestorRoute: AuthenticatedInvestorRoute,
   AuthenticatedPartnersRoute: AuthenticatedPartnersRoute,
   AuthenticatedPipelineRoute: AuthenticatedPipelineRoute,
   AuthenticatedProcurementRoute: AuthenticatedProcurementRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
   AuthenticatedSitesRoute: AuthenticatedSitesRoute,
   AuthenticatedTasksRoute: AuthenticatedTasksRoute,
 }
