@@ -61,7 +61,7 @@ export function useDeleteRow(table: string, label = "Record") {
   });
 }
 
-export type SettingsMap = Record<string, any>;
+export type SettingsMap = any;
 
 export function useSettings() {
   return useQuery({
