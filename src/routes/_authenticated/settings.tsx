@@ -107,7 +107,7 @@ function SettingsPage() {
                   id="company-launch"
                   type="date"
                   disabled={!canEdit}
-                  value={company.launch_date ?? ""}
+                  value={company["launch_date"] ?? ""}
                   onChange={(e) => setCompany({ ...company, launch_date: e.target.value || null })}
                 />
               </div>
@@ -119,7 +119,7 @@ function SettingsPage() {
                 rows={3}
                 disabled={!canEdit}
                 placeholder="Shown at the top of the read-only investor view."
-                value={branding.summary ?? ""}
+                value={branding["summary"] ?? ""}
                 onChange={(e) => setBranding({ ...branding, summary: e.target.value })}
               />
             </div>
@@ -141,7 +141,7 @@ function SettingsPage() {
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="base-currency">Base currency</Label>
-                <Input id="base-currency" value={currency.base ?? "USD"} disabled />
+                <Input id="base-currency" value={currency["base"] ?? "USD"} disabled />
                 <p className="text-xs text-muted-foreground">All planning figures are held in USD.</p>
               </div>
               <div className="space-y-2">
@@ -151,7 +151,7 @@ function SettingsPage() {
                   type="number"
                   min={0}
                   disabled={!canEdit}
-                  value={currency.sle_rate ?? 0}
+                  value={currency["sle_rate"] ?? 0}
                   onChange={(e) => setCurrency({ ...currency, sle_rate: Number(e.target.value) })}
                 />
                 <p className="text-xs text-muted-foreground">Indicative conversion only — update it as rates move.</p>
@@ -210,7 +210,7 @@ function SettingsPage() {
                     step={1}
                     disabled={!canEdit}
                     value={[Number(weights[c.key] ?? 1)]}
-                    onValueChange={([v]) => setWeights({ ...weights, [c.key]: v })}
+                    onValueChange={([v]) => setWeights({ ...weights, [c.key]: Number(v ?? 0) })}
                   />
                 </div>
               ))}

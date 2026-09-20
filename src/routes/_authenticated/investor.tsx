@@ -50,12 +50,12 @@ function InvestorPage() {
     leads: leads.data ?? [],
   });
 
-  const contributionPct = 100 - Number(finance.variable_pct ?? 0);
+  const contributionPct = 100 - Number((finance as any).variable_pct ?? 0);
   const breakEvenMonthly = contributionPct > 0 ? Number(finance.monthly_opex ?? 0) / (contributionPct / 100) : 0;
   const breakEvenDaily = Number(finance.operating_days ?? 0) > 0 ? breakEvenMonthly / Number(finance.operating_days) : 0;
 
   const scored = (sites.data ?? [])
-    .map((s) => ({ name: s.name, score: weightedScore(s, weights), decision: s.decision }))
+    .map((s) => ({ name: s.name, score: weightedScore(s, weights).percent, decision: s.decision }))
     .sort((a, b) => b.score - a.score);
 
   const approvals = (compliance.data ?? []).filter((c) => c.status === "Approved").length;
@@ -96,7 +96,7 @@ function InvestorPage() {
       </GlassCard>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Candidate sites evaluated" value={`${readiness.siteScoredCount} / ${(sites.data ?? []).length}`} />
+        <StatCard label="Candidate sites evaluated" value={`${readiness.scored} / ${(sites.data ?? []).length}`} />
         <StatCard label="Compliance items approved" value={`${approvals} / ${(compliance.data ?? []).length}`} />
         <StatCard label="Phase 1 capital plan" value={usd(phase1Capital(procurement.data ?? []))} tone="gold" />
         <StatCard
@@ -136,7 +136,7 @@ function InvestorPage() {
               {scored.map((s) => (
                 <TableRow key={s.name}>
                   <TableCell>{s.name}</TableCell>
-                  <TableCell className="text-right">{s.score.toFixed(1)}</TableCell>
+                  <TableCell className="text-right">{`${s.score.toFixed(0)}%`}</TableCell>
                   <TableCell className="text-muted-foreground">{s.decision}</TableCell>
                 </TableRow>
               ))}
