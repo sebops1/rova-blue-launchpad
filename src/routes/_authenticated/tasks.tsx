@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/hooks/useAuth";
 import { LAUNCH_TIMELINE, PRIORITIES, TASK_CATEGORIES, TASK_STATUSES } from "@/lib/constants";
-import { useDeleteRow, useRows, useSaveRow } from "@/lib/data";
+import { useDeleteRow, useRows, useSaveRow, type Row } from "@/lib/data";
 import { dateLabel, daysUntil } from "@/lib/format";
 
 export const Route = createFileRoute("/_authenticated/tasks")({
@@ -78,8 +78,8 @@ function TasksPage() {
     setDialogOpen(true);
   };
 
-  function TaskCard({ row }: { row: Record<string, any> }) {
-    const d = daysUntil(row.due_date as string);
+  function TaskCard({ row }: { row: Row }) {
+    const d = daysUntil(row.due_date);
     return (
       <GlassCard hover className="p-3">
         <div className="flex items-start justify-between gap-2">
@@ -208,7 +208,7 @@ function TasksPage() {
           <TabsContent value="timeline" className="mt-4 space-y-4">
             {LAUNCH_TIMELINE.map((phase) => {
               const phaseRows = rows.filter(
-                (t) => t.week === phase.week || (t.week == null && phase.categories.includes(t.category)),
+                (t) => t.week === phase.week || (t.week == null && (phase.categories as readonly string[]).includes(t.category)),
               );
               const phaseDone = phaseRows.filter((t) => t.status === "Done").length;
               return (
